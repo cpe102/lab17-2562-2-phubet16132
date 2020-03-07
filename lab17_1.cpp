@@ -1,4 +1,3 @@
-//Write your code here
 #include<iostream>
 #include<string>
 #include<fstream>
@@ -15,11 +14,7 @@ string ToUpperCase(string t) {
 	return t;
 }
 
-
 int main(){
-	
-	
-
 	
 	ifstream file("name_score.txt");
 	
@@ -33,12 +28,16 @@ int main(){
 	vector<string> linevec;
 	vector<string> namevec;
 	vector<string> grade;
+	vector<string> upname;
 	
 	while(getline(file,line)){
-		
+				
 		linevec.push_back(line);
 		
+	
+		
 		i++;
+		
 	}
 	
 	for(int j=0;j<linevec.size();j++){
@@ -48,6 +47,8 @@ int main(){
 		
 		
 		namevec.push_back(name);
+		
+		upname.push_back(ToUpperCase(name));
 		
 		string g="";
 		
@@ -70,6 +71,7 @@ int main(){
 		sumsco=0;
 		
 		grade.push_back(g);
+		
 	}
 	
 	
@@ -95,12 +97,17 @@ int main(){
 	vector<string> nameout;
 	vector<char> gradeout;
 	
+	int check=0;
+	
+	
+	
 	
 	
 	if(string(com_name_score)=="grade"){
 		for(int k=0;k<grade.size();k++){
 			if(grade[k]==string(gradeorname)){
 				nameout.push_back(namevec[k]);
+				                                 
 			}
 		}
 		cout<<"----------------------------------"<<endl;
@@ -111,18 +118,43 @@ int main(){
 	}
 	else if(string(com_name_score)=="name"){
 		for(int k=0;k<namevec.size();k++){
-			if(ToUpperCase(namevec[k])==ToUpperCase(gradeorname)){ //page 15 lec 17 sprit
-			cout<<"----------------------------------"<<endl;
-			cout<<grade[k]<<endl;
-			cout<<"----------------------------------"<<endl;
-			
+			//page 15 lec 17 sprit
+			int count=0;
+			int start=0;
+			vector<string> p;
+			int end=namevec[k].find_frist_of(" ");
+			while(end != -1){
+				p.push_back(namevec[k].substr(start,end-start));
+				start=end+1;
+				end=name[k].find_first_of(" ",start);
+				count++;
 			}
 			
 			
 			
+			if(ToUpperCase(namevec[k])==p[0] or ToUpperCase(namevec[k])==p[1] or ToUpperCase(namevec[k])==p[2] ){ 
+			
+			check+=1;
+			
+			if(check==1){
+				cout<<"----------------------------------"<<endl;
+				cout<<grade[k]<<endl;
+				cout<<"----------------------------------"<<endl;
+			}
+		
+			
+			}
+			
 			
 		}
+			 if(check==0){
+			 	cout<<"----------------------------------"<<endl;
+				cout<<"Cannot found."<<endl;
+				cout<<"----------------------------------"<<endl;
+			}
 	}
+	
+	
 	
 	else if(string(com_name_score)=="exit"){
 		break;
