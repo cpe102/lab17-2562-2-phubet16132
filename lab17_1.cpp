@@ -118,27 +118,16 @@ int main(){
 	}
 	else if(string(com_name_score)=="name"){
 		for(int k=0;k<namevec.size();k++){
-			//page 15 lec 17 sprit
+			
 			int count=0;
-			int start=0;
-			vector<string> p;
-			int end=namevec[k].find_frist_of(" ");
-			while(end != -1){
-				p.push_back(namevec[k].substr(start,end-start));
-				start=end+1;
-				end=name[k].find_first_of(" ",start);
-				count++;
-			}
 			
-			
-			
-			if(ToUpperCase(namevec[k])==p[0] or ToUpperCase(namevec[k])==p[1] or ToUpperCase(namevec[k])==p[2] ){ 
+			if(ToUpperCase(namevec[k])==ToUpperCase(gradeorname)){ 
 			
 			check+=1;
 			
 			if(check==1){
 				cout<<"----------------------------------"<<endl;
-				cout<<grade[k]<<endl;
+				cout<<namevec[k]<<"'s grade is "<<grade[k]<<endl;
 				cout<<"----------------------------------"<<endl;
 			}
 		
